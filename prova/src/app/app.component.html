@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<h1>Search</h1>
+
+<p>
+  <input type="text" #newquery>
+  <button (click)="submit(newquery)">Search</button>
+</p>
+
+<div *ngIf="results"> 
+
+   <div class='card-columns'>
+        <div *ngFor="let uta of results" class="card">
+            <div *ngIf="photoURL(uta.tracks.items[0].images[0].url) == false" class="alert alert-info" role="alert"><b>Info!</b> Immagine non presente</div>
+            <img *ngIf="photoURL(uta.poster) != false" class='card-img-top' [src]="photoURL(uta.poster)">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{uta.title}}</h4>
+                <p class="card-text">{{uta.fullplot}}</p>
+            </div>
+        </div>
+    </div>  
+
+</div>

@@ -1,0 +1,38 @@
+import { Component } from '@angular/core';
+import { SpotifyService } from './spotify.service';
+import { Observable } from 'rxjs';
+import { DomSanitizer} from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  query: string;
+  title = 'first-routed-app';
+  obsTrack: Observable<Object>;
+  results: any;
+  // faccio iniettare lo spotify service e faccio una ricerca
+  constructor(private sanitizer: DomSanitizer, public spotify: SpotifyService) {
+   
+  }
+
+  submit(query:HTMLInputElement): void {
+    if (!query.value) {
+      return;
+    }
+    this.query = query.value;
+    this.obsTrack = this.spotify.searchTrack(this.query);
+    this.obsTrack.subscribe((data) => this.results = data); 
+  }
+
+    photoURL(urltoSanitize) {   
+        if(urltoSanitize == undefined){
+        return false;
+        }
+        console.log(urltoSanitize);
+        return this.sanitizer.bypassSecurityTrustUrl(urltoSanitize);
+    }
+
+}
