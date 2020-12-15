@@ -1,0 +1,10 @@
+<div *ngIf="food">
+    <h1>{{ food.product_name }}</h1>
+    <p>
+        <img src="{{ food.image_front_url }}">
+    </p>
+    <p>
+        Manufacturer: {{food.brands}}<br>Production place: {{food.manufacturing_places}}
+    </p>
+    <p><a href (click)="back()">Back</a></p>
+</div>

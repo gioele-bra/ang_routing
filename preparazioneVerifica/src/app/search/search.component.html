@@ -1,0 +1,23 @@
+<p>
+  <input type="text" #newquery>
+  <button (click)="submit(newquery)">Search</button>
+</p>
+
+<div *ngIf="results">
+  <div *ngIf="!results.products || results.products.length ==0">
+    No tracks were found with the term '{{ query }}'
+  </div>
+
+  <div *ngIf="results.products &&  results.products.length > 0">
+    <div class="card-columns">
+      <div class="card" style="width:400px" *ngFor="let t of results.products">
+        <img class="card-img-top img-responsive" src="{{ t.image_front_url }}" alt="Card image">
+        <div class="card-body">
+          <h4 class="card-title">{{t.product_name}}</h4>
+          <p class="card-text">Manufacturer: {{t.brands}}<br>Production place: {{t.manufacturing_places}}</p>
+          <a href="#" [routerLink]="['/item', t.id]" class="btn btn-primary">See this item</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
