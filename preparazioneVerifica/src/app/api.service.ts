@@ -17,6 +17,7 @@ export class ApiService {
 
   getFood(id: string) {
     const url = `https://world.openfoodfacts.org/api/v0/product/${id}`;
+    console.log(url)
     console.log(this.http.get(url));
     return this.http.get(url);
   }

@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 })
 export class SearchComponent {
   query: string;
-  title = 'first-routed-app';
   obsTrack: Observable<Object>;
   results: any;
 
